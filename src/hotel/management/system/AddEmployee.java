@@ -153,15 +153,15 @@ public class AddEmployee extends JFrame{ //Third Frame
                     try {
                         // Create a FileWriter and BufferedWriter to write to a text file
                         FileWriter writer = new FileWriter("employees.txt", true);
-                        BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
 
                         // Write employee details to the file
-                        bufferedWriter.write(name + "," + age + "," + gender + "," + s6 + "," + salary + "," + phone + ","
+                        writer.write(name + "," + age + "," + gender + "," + s6 + "," + salary + "," + phone + ","
                                 + aadhar + "," + email);
-                        bufferedWriter.newLine();
+                        writer.write("\n");
 
                         // Close the BufferedWriter
-                        bufferedWriter.close();
+                        writer.close();
 
                         JOptionPane.showMessageDialog(null, "Employee Added");
                         setVisible(false);

@@ -77,15 +77,18 @@ public class Room extends JFrame {
 					Object[][] data = {
 							{"101", "Single", "Available"},
 							{"102", "Double", "Occupied"},
+							{"103","Double","Available"}
 							// Add more rows as needed
 					};
 
 					String[] columnNames = {"Room Number", "Type", "Status"};
 
+
 					// Create a TableModel with hardcoded data
 					DefaultTableModel model = new DefaultTableModel(data, columnNames);
 
-					// Set the table model
+
+					// Set the table model to Jtable
 					table.setModel(model);
 				} catch (Exception e1) {
 					e1.printStackTrace();

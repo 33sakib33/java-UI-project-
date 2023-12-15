@@ -28,12 +28,12 @@ public class HotelManagementSystem extends JFrame implements ActionListener{
 				
                 
                 
-//                ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("hotel/management/system/icons/first.jpg"));
+//                ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("/Users/sakib/IdeaProjects/java-UI-project-/Screenshot 2023-12-07 at 12.25.30 AM.png"));
 //                Image i3 = i1.getImage().getScaledInstance(1366, 390,Image.SCALE_DEFAULT);
 //                ImageIcon i2 = new ImageIcon(i3);
 //                l1 = new JLabel(i2);
                 
-                JLabel lid=new JLabel("HOTEL MANAGEMENT SYSTEM");
+                JLabel lid=new JLabel("Hotel Management Project Java UI");
                 lid.setBounds(30,300,1500,100);
                 lid.setFont(new Font("serif",Font.PLAIN,70));
                 lid.setForeground(Color.red);
@@ -62,7 +62,7 @@ public class HotelManagementSystem extends JFrame implements ActionListener{
         
         public void actionPerformed(ActionEvent ae){
                 new Login().setVisible(true);
-                this.setVisible(false);
+//                this.setVisible(true);
                 
         }
         

@@ -73,6 +73,11 @@ public class Employee extends JFrame {
 					Object[][] data = {
 							{"1", "John Doe", "25", "Male", "IT"},
 							{"2", "Jane Smith", "30", "Female", "Finance"},
+							{"2", "Jane Smith", "30", "Female", "Finance"},
+							{"2", "Jane Smith", "30", "Female", "Finance"},
+							{"2", "Jane Smith", "30", "Female", "Finance"},
+							{"2", "Jane Smith", "30", "Female", "Finance"},
+
 							// Add more rows as needed
 					};
 

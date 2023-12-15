@@ -8,6 +8,9 @@ package hotel.management.system;
 import java.awt.BorderLayout;
 import java.awt.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -104,33 +107,31 @@ public class SearchRoom extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// Hardcoded data for testing
-					Object[][] data;
-					String[] columnNames;
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					model.setRowCount(0); // Clear existing data
 
-					if (checkRoom.isSelected()) {
-						data = new Object[][]{
-								{"101", "Single", "Available"},
-								{"102", "Double", "Available"},
-								// Add more rows as needed
-						};
-						columnNames = new String[]{"Room Number", "Type", "Status"};
-					} else {
-						data = new Object[][]{
-								{"103", "Single", "Occupied"},
-								{"104", "Double", "Occupied"},
-								// Add more rows as needed
-						};
-						columnNames = new String[]{"Room Number", "Type", "Status"};
+					BufferedReader reader = new BufferedReader(new FileReader("rooms.txt"));
+					String line;
+
+					while ((line = reader.readLine()) != null) {
+						System.out.println(line);
+						String[] parts = line.split(",");
+						System.out.println(parts[1]);
+
+						String roomNumber = parts[0].trim();
+						String availability = parts[1].trim();
+						String cleanStatus = parts[2].trim();
+						String price = parts[3].trim();
+						String bedType = parts[4].trim();
+
+
+							model.addRow(parts);
+
 					}
 
-					// Create a TableModel with hardcoded data
-					DefaultTableModel model = new DefaultTableModel(data, columnNames);
-
-					// Set the table model
-					table.setModel(model);
-				} catch (Exception e1) {
-					e1.printStackTrace();
+					reader.close();
+				} catch (IOException ex) {
+					ex.printStackTrace();
 				}
 			}
 		});

@@ -161,15 +161,15 @@ public class AddDrivers extends JFrame implements ActionListener{
 
 					// Create a FileWriter and BufferedWriter to write to a text file
 					FileWriter writer = new FileWriter("drivers.txt", true);
-					BufferedWriter bufferedWriter = new BufferedWriter(writer);
+//					BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
 					// Write driver information to the file
-					bufferedWriter.write(
+					writer.write(
 							name + "," + age + "," + gender + "," + company + "," + brand + "," + available + "," + location);
-					bufferedWriter.newLine();
+					writer.write('\n');
 
 					// Close the BufferedWriter
-					bufferedWriter.close();
+					writer.close();
 
 					JOptionPane.showMessageDialog(null, "Driver Successfully Added");
 					this.setVisible(false);
