@@ -13,9 +13,7 @@ import java.awt.event.*;
 
 public class Dashboard extends JFrame{
 
-    public static void main(String[] args) {
-        new Dashboard().setVisible(true);
-    }
+
     
     public Dashboard() {
         super("HOTEL MANAGEMENT SYSTEM");

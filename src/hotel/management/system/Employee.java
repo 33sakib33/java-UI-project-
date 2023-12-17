@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,20 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-//import net.proteanit.sql.DbUtils;
 
 public class Employee extends JFrame {
-	Connection conn = null;
 	private JPanel contentPane;
 	private JTable table;
-	private JLabel lblNewLabel;
-	private JLabel lblJob;
-	private JLabel lblName;
-	private JLabel lblDepartment;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,12 +37,7 @@ public class Employee extends JFrame {
 		this.dispose();
 	}
 
-	/**
-	 * Create the frame.
-	 *
-	 * @throws SQLException
-	 */
-	public Employee() throws SQLException {
+	public Employee() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(430, 200, 1000, 600);
 		contentPane = new JPanel();
@@ -64,32 +49,34 @@ public class Employee extends JFrame {
 		table.setBounds(0, 34, 1000, 450);
 		contentPane.add(table);
 
-
 		JButton btnLoadData = new JButton("Load Data");
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// Hardcoded data for testing
-					Object[][] data = {
-							{"1", "John Doe", "25", "Male", "IT"},
-							{"2", "Jane Smith", "30", "Female", "Finance"},
-							{"2", "Jane Smith", "30", "Female", "Finance"},
-							{"2", "Jane Smith", "30", "Female", "Finance"},
-							{"2", "Jane Smith", "30", "Female", "Finance"},
-							{"2", "Jane Smith", "30", "Female", "Finance"},
+					// Read data from the employees.txt file
+					BufferedReader reader = new BufferedReader(new FileReader("employees.txt"));
+					DefaultTableModel model = new DefaultTableModel();
+					model.addColumn("Name");
+					model.addColumn("Age");
+					model.addColumn("Gender");
+					model.addColumn("Job");
+					model.addColumn("Salary");
+					model.addColumn("Phone");
+					model.addColumn("Aadhar");
+					model.addColumn("Email");
 
-							// Add more rows as needed
-					};
+					String line;
+					while ((line = reader.readLine()) != null) {
+						String[] parts = line.split(",");
+						model.addRow(parts);
+					}
 
-					String[] columnNames = {"ID", "Name", "Age", "Gender", "Department"};
-
-					// Create a TableModel with hardcoded data
-					DefaultTableModel model = new DefaultTableModel(data, columnNames);
+					reader.close();
 
 					// Set the table model
 					table.setModel(model);
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				} catch (IOException ex) {
+					ex.printStackTrace();
 				}
 			}
 		});
@@ -97,8 +84,6 @@ public class Employee extends JFrame {
 		btnLoadData.setBackground(Color.BLACK);
 		btnLoadData.setForeground(Color.WHITE);
 		contentPane.add(btnLoadData);
-
-		// ... (rest of the code remains unchanged)
 
 		getContentPane().setBackground(Color.WHITE);
 	}

@@ -10,6 +10,9 @@ package hotel.management.system;
 import java.awt.BorderLayout;
 import java.awt.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -69,19 +72,7 @@ public class PickUp extends JFrame {
 		
 		JLabel lblTypeOfCar = new JLabel("Type of Car");
 		lblTypeOfCar.setBounds(32, 97, 89, 14);
-		contentPane.add(lblTypeOfCar);
 
-		
-                c1 = new Choice();
-                try{
-                    conn c = new conn();
-                    ResultSet rs = c.s.executeQuery("select * from driver");
-                    while(rs.next()){
-                        c1.add(rs.getString("brand"));    
-                    }
-                }catch(Exception e){ }
-                c1.setBounds(123, 94, 150, 25);
-		contentPane.add(c1);
 
                 
 		
@@ -93,25 +84,32 @@ public class PickUp extends JFrame {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					// Hardcoded data for testing
-					Object[][] data = {
-							{"101", "Ford", "Mustang"},
-							{"102", "Chevrolet", "Camaro"},
-							// Add more rows as needed
-					};
+					// Read data from a file (assuming you have a file named drivers.txt)
+					BufferedReader reader = new BufferedReader(new FileReader("drivers.txt"));
 
-					String[] columnNames = {"Driver ID", "Brand", "Model"};
+					// Assuming the file format is: DriverID,Brand,Model,Age,Gender,Company,Brand,Available,Location
+					String[] columnNames = {"Driver ID", "Brand", "Model", "Age", "Gender", "Company", "Brand", "Available", "Location"};
 
-					// Create a TableModel with hardcoded data
-					DefaultTableModel model = new DefaultTableModel(data, columnNames);
+					// Create a DefaultTableModel
+					DefaultTableModel model = new DefaultTableModel(null, columnNames);
+
+					// Read lines from the file and add to the model
+					String line;
+					while ((line = reader.readLine()) != null) {
+						String[] parts = line.split(",");
+						model.addRow(parts);
+					}
 
 					// Set the table model
 					table.setModel(model);
-				} catch (Exception e1) {
+
+					reader.close();
+				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
+
 
 		btnRegister.setBounds(200, 500, 120, 30);
                 btnRegister.setBackground(Color.BLACK);

@@ -23,9 +23,6 @@ public class AddDrivers extends JFrame implements ActionListener{
     JButton b1,b2;
     Choice c1;
 
-    public static void main(String[] args) {
-        new AddDrivers().setVisible(true);
-    }
 
 
     public AddDrivers() {

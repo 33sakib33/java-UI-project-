@@ -95,15 +95,6 @@ public class AddEmployee extends JFrame{ //Third Frame
             textField_4.setBounds(200, 270, 150, 27);
             add(textField_4);
 	
-            JLabel Phno = new JLabel("AADHAR");
-            Phno.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Phno.setBounds(60, 320, 150, 27);
-            add(Phno);
-			
-            textField_5 = new JTextField();
-            textField_5.setBounds(200, 320, 150, 27);
-            add(textField_5);
-	
             
             JLabel email = new JLabel("EMAIL");
             email.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -179,7 +170,4 @@ public class AddEmployee extends JFrame{ //Third Frame
 			
 	}
         
-    public static void main(String[] args){
-        new AddEmployee();
-    }   
 }
